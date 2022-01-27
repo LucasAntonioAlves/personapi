@@ -1,18 +1,17 @@
-package one.digital.personapi.mapper;
+package one.digital.personapi.dto.mapper;
 
 import one.digital.personapi.dto.request.PersonDTO;
 import one.digital.personapi.entity.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PersonMapper {
 
-    PersonMapper INSTACE = Mappers.getMapper(PersonMapper.class);
-
     @Mapping(target = "birthDate", source = "birthDate", dateFormat = "dd-MM-yyyy")
-    Person toModel(PersonDTO personDTO);
+    default Person toModel(PersonDTO dto) {
+        return null;
+    }
 
-    PersonDTO toDTO(Person person);
+    PersonDTO toDTO(Person dto);
 }
